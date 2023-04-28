@@ -9,6 +9,7 @@
 	<link rel="icon" type="image/png" href="./assets/logo.png">
 </head>
 
+
 <body>
 	<!--Header(start)-->
 	<table id="header" border="0" width="100%"
@@ -435,118 +436,129 @@
 
 
 	<!--Contact(start)-->
+
+	<!DOCTYPE html>
+	<html lang="en">
+
+	<head>
+		<script src=
+	"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+
+		<link rel="stylesheet" href=
+	"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+			integrity=
+	"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+			crossorigin="anonymous">
+	</head>
+	
 	<table id="contact" border="0" width="100%"
-		cellpadding="0" cellspacing="0" bgcolor="#c2c0c3">
-		<tr>
-			<td>
-				<table border="0" cellpadding="15"
-					cellspacing="0" width="80%" align="center">
-					<tr>
-						<td height="180" align="center"
-							valign="middle" colspan="2">
-							<font face="Verdana" size="7"
-								color="black">
-								Contact
-							</font>
-							<hr color="black" width="90">
-						</td>
-					</tr>
+		cellpadding="0" cellspacing="0" bgcolor="black">
+		
+		<h2 class="text-primary" style=
+			"margin-left: 15px; margin-bottom: 10px">
+			Hey There,Help Me nproving Better By Your Views
+		</h2>
+		
+		<form class="container" id="contactForm">
+			<div class="card">
+				<div class="card-body">
+					<div class="form-group">
+						<label for="exampleFormControlInput1">
+							Enter Your Name
+						</label>
+						
+						<input type="text" class="form-control"
+						id="name" placeholder="Enter your name">
+					</div>
 
-					<tr>
-						<td align="center" valign="top">
-							<table border="0" width="50%" cellpadding="15"
-								cellspacing="0" align="center" bgcolor="black">
-								<tr>
-									<td width="30%">
-										<hr color="black">
-										<font face="Verdana" size="4"
-											color="#ffffff">
-											Name
-										</font>
-									</td>
-									<td width="70%">
-										<font face="Verdana" size="4"
-											color="#ffffff">
-											<input type="text" size="40">
-										</font>
-									</td>
-								</tr>
-								<tr>
-									<td width="30%">
-										<font face="Verdana" size="4"
-											color="#ffffff">
-											Email
-										</font>
-									</td>
-									<td width="70%">
-										<font face="Verdana" size="4"
-											color="#ffffff">
-											<input type="email" size="40">
-										</font>
-									</td>
-								</tr>
-								<tr>
-									<td width="30%">
-										<font face="Verdana" size="4"
-											color="#ffffff">
-											Number
-										</font>
-									</td>
-									<td width="70%">
-										<font face="Verdana" size="4"
-											color="#ffffff">
-											<input type="number" size="12">
-										</font>
-									</td>
-								</tr>
-								<tr>
-									<td width="30%">
-										<font face="Verdana" size="4"
-											color="#ffffff">
-											Message
-										</font>
-									</td>
-									<td width="70%">
-										<font face="Verdana" size="4"
-											color="#ffffff">
-											<textarea rows="5"
-												cols="37">
-											</textarea>
-										</font>
-									</td>
-								</tr>
-								<tr>
-									<td width="30%">
-										
-									</td>
-									<td width="70%">
-										<button type="Submit">
-											<font face="Verdana"
-												size="4" color="black">
-												<b>Submit</b>
-											</font>
-										</button>
-										<hr color="black">
-										<hr color="black">
-									</td>
-								</tr>
-							</table>
-						</td>
+					<div class="form-group">
+						<label for="exampleFormControlInput1">
+							Email address
+						</label>
+						
+						<input type="email" class="form-control"
+						id="email" placeholder="name@example.com">
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlInput1">
+							Contact Number
+						</label>
+						
+						<input type="number" class="form-control"
+						id="contactnumber" placeholder="Please Enter Your contact Number">
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlInput1">
+							Message
+						</label>
+						
+						<input type="text" class="form-control"
+						id="msg" placeholder="Please Enter Your Message">
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary"
+					style="margin-left: 15px; margin-top: 10px">
+					Submit
+				</button>
+			</div>
+		</form>
 
-					</tr>
-					<tr>
-						<td colspan="2">
-							
-							
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
+		<script src=
+	"https://www.gstatic.com/firebasejs/3.7.4/firebase.js">
+		</script>
+		
+		<script>
+			var firebaseConfig = {
+				apiKey: "AIzaSyBrOdTV4OrKkKQePG4JiA4U8wdQmpyaCtg",
+				authDomain: "portfolio-c05d4.firebaseapp.com",
+				databaseURL: "https://portfolio-c05d4-default-rtdb.firebaseio.com",
+				projectId: "portfolio-c05d4",
+				storageBucket: "portfolio-c05d4.appspot.com",
+				messagingSenderId: "138968550521",
+				appId: "1:138968550521:web:030ab343d0331e0c20d8a8",
+			};
+
+			firebase.initializeApp(firebaseConfig);
+
+			var messagesRef = firebase.database()
+				.ref('Collected Data');
+			
+			document.getElementById('contactForm')
+				.addEventListener('submit', submitForm);
+
+			function submitForm(e) {
+				e.preventDefault();
+
+				// Get values
+				var name = getInputVal('name');
+				var email = getInputVal('email');
+				var contact_number = getInputVal('contactnumber')
+				var message = getInputVal('msg')
+
+				saveMessage(name, email, contact_number, message);
+				document.getElementById('contactForm').reset();
+			}
+
+			// Function to get form values
+			function getInputVal(id) {
+				return document.getElementById(id).value;
+			}
+
+			// Save message to firebase
+			function saveMessage(name, email, contact_number, message) {
+				var newMessageRef = messagesRef.push();
+				newMessageRef.set({
+					name: name,
+					email: email,
+					contactnumber: contact_number,
+					message: message,
+				});
+			}
+		</script>
 	</table>
-	<!--Contact(end)-->
-
-
+	</html>
+	<!--contact(end)-->
 	
 
 	<!--Footer(start)-->
